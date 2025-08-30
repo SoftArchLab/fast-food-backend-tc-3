@@ -1,0 +1,1056 @@
+{
+	"info": {
+		"_postman_id": "d2d782de-c267-4cd3-a76b-7abb47d59d43",
+		"name": "FastFood",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"customer\",\r\n  \"email\": \"customer@email.com\",\r\n  \"taxId\": \"88888888888\",\r\n  \"password\": \"customer\",\r\n  \"isGuest\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/Login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "GetCategories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/Category/GetCategories",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Category",
+								"GetCategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCategoryById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/Category/GetCategoryById/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Category",
+								"GetCategoryById",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Combos\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/Category/AddCategory",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Category",
+								"AddCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Combos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/Category/UpdateCategory/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Category",
+								"UpdateCategory",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/Category/RemoveCategory/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Category",
+								"RemoveCategory",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "GetProducts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/Product/GetProducts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Product",
+								"GetProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/Product/GetProductById/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Product",
+								"GetProductById",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Sorvete\",\r\n  \"description\": \"Sorvete de baunilha\",\r\n  \"price\": 5,\r\n  \"stockQuantity\": 50,\r\n  \"isActive\": true,\r\n  \"categoryId\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/Product/AddProduct",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Product",
+								"AddProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Sorvete\",\r\n  \"description\": \"Sorvete de baunilha\",\r\n  \"price\": 5,\r\n  \"stockQuantity\": 100,\r\n  \"isActive\": true,\r\n  \"categoryId\": 4\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/Product/UpdateProduct/4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Product",
+								"UpdateProduct",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/Product/RemoveProduct/4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Product",
+								"RemoveProduct",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "GetOrders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/Order/GetOrders",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Order",
+								"GetOrders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrderById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/Order/GetOrderById/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Order",
+								"GetOrderById",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateOrderStatus",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/Order/UpdateOrderStatus/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Order",
+								"UpdateOrderStatus",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetInPreparationOrders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/Order/GetInPreparationOrders",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Order",
+								"GetInPreparationOrders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetReadyOrders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/Order/GetReadyOrders",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Order",
+								"GetReadyOrders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GetUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/User/GetUsers",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"User",
+								"GetUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/User/GetUserById/27cd36a3-816a-4a0e-9dab-5893908769fa",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"User",
+								"GetUserById",
+								"27cd36a3-816a-4a0e-9dab-5893908769fa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddCustomerUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"customer up\",\r\n  \"taxId\": \"98765432198\",\r\n  \"email\": \"customerup@email.com\",\r\n  \"password\": \"customerup\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/User/AddCustomerUser",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"User",
+								"AddCustomerUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddAdminUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"admin up\",\r\n  \"taxId\": \"99999999999\",\r\n  \"email\": \"admin@email.com\",\r\n  \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/User/AddAdminUser",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"User",
+								"AddAdminUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"adminup\",\r\n  \"taxId\": \"99999999999\",\r\n  \"email\": \"admin@gmail.com.br\",\r\n  \"password\": \"adminup\",\r\n  \"role\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/User/UpdateUser/27cd36a3-816a-4a0e-9dab-5893908769fa",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"User",
+								"UpdateUser",
+								"27cd36a3-816a-4a0e-9dab-5893908769fa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/User/RemoveUser/08ddcc5f-f4c9-44f7-82ac-a8485d4a18e2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"User",
+								"RemoveUser",
+								"08ddcc5f-f4c9-44f7-82ac-a8485d4a18e2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "GetUserCart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/Cart/GetUserCart/11111111-1111-1111-1111-111111111111",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Cart",
+								"GetUserCart",
+								"11111111-1111-1111-1111-111111111111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddCartItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cartId\": 1,\r\n  \"productId\": 1,\r\n  \"quantity\": 1,\r\n  \"userId\": \"11111111-1111-1111-1111-111111111111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/Cart/AddCartItem",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Cart",
+								"AddCartItem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveCartItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cartId\": 1,\r\n  \"productId\": 2,\r\n  \"quantity\": 1,\r\n  \"userId\": \"11111111-1111-1111-1111-111111111111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/Cart/RemoveCartItem",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Cart",
+								"RemoveCartItem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GenerateOrderFromCart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/Cart/GenerateOrderFromCart/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Cart",
+								"GenerateOrderFromCart",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "GetStatusPaymentByOrderId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/Payment/GetStatusPaymentByOrderId/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Payment",
+								"GetStatusPaymentByOrderId",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreatePayment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": 1,\r\n  \"idEmpotencyKey\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"quantity\": 2,\r\n  \"description\": \"Pagamento\",\r\n  \"payerEmail\": \"admin@gmail.com.br\",\r\n  \"price\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/Payment/CreatePayment",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Payment",
+								"CreatePayment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Webhook",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"action\": \"string\",\r\n  \"api_version\": \"string\",\r\n  \"data\": {\r\n    \"id\": \"1\"\r\n  },\r\n  \"date_created\": \"2025-08-06T01:17:57.024Z\",\r\n  \"id\": \"string\",\r\n  \"live_mode\": true,\r\n  \"type\": \"string\",\r\n  \"user_id\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/Payment/Webhook",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"Payment",
+								"Webhook"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://127.0.0.1:8080",
+			"type": "default"
+		},
+		{
+			"key": "Token",
+			"value": "adada",
+			"type": "default"
+		}
+	]
+}

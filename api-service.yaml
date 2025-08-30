@@ -1,0 +1,15 @@
+# service.yaml
+# Exp�e a aplica��o internamente via NodePort
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastfood-service
+  namespace: fastfood-api
+spec:
+  type: NodePort
+  selector:
+    app: fastfood-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

@@ -1,0 +1,30 @@
+﻿services:
+    # FastFood application service
+  fastfood:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastfood_app
+    ports:
+      - "8080:8080"
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - connectionStrings__DefaultConnection=Server=fastfood_db_mysql;Port=3306;Database=FastFoodDb;User=root;Password=fastfood@123;
+    depends_on: 
+        - fastfood_db_mysql
+    restart: unless-stopped
+  # MySQL database service for FastFood application
+  fastfood_db_mysql:
+    image: mysql:8.0
+    container_name: fastfood_db
+    environment:
+      MYSQL_ROOT_PASSWORD: fastfood@123
+      MYSQL_DATABASE: FastFoodDb
+    ports:
+      - "3306:3306"
+      - "3307:3307"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always 
+volumes:
+  mysql_data:

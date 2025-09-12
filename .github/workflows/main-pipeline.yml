@@ -35,7 +35,7 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
         
-  deploy:
+  deployDockerImage:
 
     runs-on: ubuntu-latest
     needs: build # This job depends on the 'build' job
@@ -56,3 +56,4 @@ jobs:
          context: .
          push: true
          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tc-fastfoodapi:latest
+

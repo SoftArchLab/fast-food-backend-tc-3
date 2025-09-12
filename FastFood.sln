@@ -7,17 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFood.API", "FastFood.AP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{24A32DCC-BD8A-48F9-ADBD-49E2CD644F9E}"
 	ProjectSection(SolutionItems) = preProject
-		api-deployment.yaml = api-deployment.yaml
-		api-hpa.yaml = api-hpa.yaml
-		api-secret.yaml = api-secret.yaml
-		api-service.yaml = api-service.yaml
 		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
-		mysql-configmap.yaml = mysql-configmap.yaml
-		mysql-deployment.yaml = mysql-deployment.yaml
-		mysql-pvc.yaml = mysql-pvc.yaml
-		mysql-secret.yaml = mysql-secret.yaml
-		mysql-service.yaml = mysql-service.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E976A3F7-ACB4-4EB5-A1A8-ED155B4F7C61}"
@@ -55,6 +46,26 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collections", "Collections", "{B75F09A3-C243-4FAD-BC98-6E0ACCA90B83}"
 	ProjectSection(SolutionItems) = preProject
 		Collections.txt = Collections.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{08FF91CF-9734-4902-AF8D-99DAEED47E2F}"
+	ProjectSection(SolutionItems) = preProject
+		api-deployment.yaml = api-deployment.yaml
+		api-hpa.yaml = api-hpa.yaml
+		api-secret.yaml = api-secret.yaml
+		api-service.yaml = api-service.yaml
+		docker-compose.yml = docker-compose.yml
+		mysql-configmap.yaml = mysql-configmap.yaml
+		mysql-deployment.yaml = mysql-deployment.yaml
+		mysql-pvc.yaml = mysql-pvc.yaml
+		mysql-secret.yaml = mysql-secret.yaml
+		mysql-service.yaml = mysql-service.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{76F71E47-A7B2-46BE-9167-E0B110CB5668}"
+	ProjectSection(SolutionItems) = preProject
+		provider.tf = provider.tf
+		variables.tf = variables.tf
 	EndProjectSection
 EndProject
 Global
@@ -123,6 +134,8 @@ Global
 		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {E976A3F7-ACB4-4EB5-A1A8-ED155B4F7C61}
 		{FBE47199-348A-4A45-BC2D-11BB3D4FA72D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{25EFB534-8337-4340-9CE5-580477043575} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{08FF91CF-9734-4902-AF8D-99DAEED47E2F} = {24A32DCC-BD8A-48F9-ADBD-49E2CD644F9E}
+		{76F71E47-A7B2-46BE-9167-E0B110CB5668} = {24A32DCC-BD8A-48F9-ADBD-49E2CD644F9E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {45A1FFD1-410A-4BD5-93C9-7B9600733379}

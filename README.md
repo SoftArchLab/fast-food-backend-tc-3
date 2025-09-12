@@ -679,3 +679,78 @@ ON DUPLICATE KEY UPDATE
     PaymentStatus=VALUES(PaymentStatus);
 
 ```
+
+## FunctionAPP
+
+```
+using System.Net;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Data.SqlClient;
+
+namespace AuthFunction
+{
+    public class AuthByCpf
+    {
+        [Function("AuthByCpf")]
+        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "auth/{cpf}")] HttpRequestData req, string cpf)
+        {
+            try
+            {
+                //string connectionString = "Server=MARCEL\\SQLEXPRESS;Database=CRUD;Trusted_Connection=True;MultipleActiveResultSets=true;Encrypt=False;";
+                string connectionString = "Server=tcp:fastfooddb.database.windows.net,1433;Initial Catalog=FastFoodDb;Persist Security Info=False;User ID=adminDB;Password=Techfiap2025@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+                string token = string.Empty;
+                bool clienteValido = false;
+                var response = req.CreateResponse(HttpStatusCode.OK);
+
+                using (SqlConnection conn = new(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string sql = "SELECT COUNT(1) FROM TB_USER WHERE TAXID = @TaxId";
+                    using (SqlCommand cmd = new(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@TaxId", cpf);
+                        int count = (int)await cmd.ExecuteScalarAsync();
+                        clienteValido = count > 0;
+                    }
+                }
+                if (clienteValido)
+                {
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var key = Encoding.ASCII.GetBytes("X9v!3kL2m#Q8zT6rP0sW@bY5dH1jF7aU");
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = new ClaimsIdentity(new[] { new Claim("cpf", cpf) }),
+                        Expires = DateTime.UtcNow.AddHours(1),
+                        SigningCredentials = new SigningCredentials(
+                            new SymmetricSecurityKey(key),
+                            SecurityAlgorithms.HmacSha256Signature)
+                    };
+                    var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                    token = tokenHandler.WriteToken(securityToken);
+                }
+
+                var result = new
+                {
+                    Cpf = cpf,
+                    Valid = clienteValido,
+                    Token = token
+                };
+
+                await response.WriteAsJsonAsync(result);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                var errorResponse = req.CreateResponse(HttpStatusCode.InternalServerError);
+                await errorResponse.WriteStringAsync($"Erro: {ex.Message}");
+                return errorResponse;
+            }
+        }
+    }
+}
+

@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: fastfood-api
-          image: alexandresgjrdev/tc-fastfoodapi:v1.1  # Imagem carregada no Minikube
+          image: 939530529281.dkr.ecr.us-east-1.amazonaws.com/fastfood-repository:latest  # Imagem carregada no Minikube
           # imagePullPolicy: Never #Instrui o Kubernetes a nunca tentar puxar a imagem do Docker Hub, e sim usar a imagem que já está carregada no cluster (via minikube image load).
           ports:
             - containerPort: 80

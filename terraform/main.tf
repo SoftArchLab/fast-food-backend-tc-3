@@ -1,3 +1,7 @@
+resource "kubernetes_manifest" "api_namespace" {
+  manifest = yamldecode(file("${path.module}/deployment/api-namespace.yaml"))
+}
+
 resource "kubernetes_manifest" "api_secret" {
   manifest = yamldecode(file("${path.module}/deployment/api-secret.yaml"))
 }

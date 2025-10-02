@@ -9,6 +9,8 @@
 .angular/
 /.angular
 .terraform/
+.secrets
+
 
 # Node
 /node_modules

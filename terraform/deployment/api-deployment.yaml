@@ -1,9 +1,4 @@
-﻿apiVersion: v1
-kind: Namespace
-metadata:
-  name: fastfood-api
-
-# deployment.yaml
+﻿# deployment.yaml
 # Define o Deployment da API com requests/limits para permitir HPA
 apiVersion: apps/v1
 kind: Deployment

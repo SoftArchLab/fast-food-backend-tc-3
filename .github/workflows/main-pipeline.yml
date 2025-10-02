@@ -65,12 +65,12 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
   
   deployApiInEksPlan:
-    runs-on: ubuntu-latest
-
     needs: deployECR
 
+    runs-on: ubuntu-latest
+
     env:
-      TF_WORKING_DIR: . 
+      TF_WORKING_DIR: ./terraform 
 
     steps:
       - name: Checkout code
@@ -100,13 +100,13 @@ jobs:
         run: terraform plan -out=tfplan
         working-directory: ${{ env.TF_WORKING_DIR }}
   
-  deployApiInEKS:
+  deployApiInEks:
     needs: deployApiInEksPlan
 
     runs-on: ubuntu-latest
 
     env:
-      TF_WORKING_DIR: . 
+      TF_WORKING_DIR: ./terraform
 
     steps:
       - name: Checkout code
@@ -140,30 +140,3 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve tfplan
         working-directory: ${{ env.TF_WORKING_DIR }}  
-
-
-  # deployEKS:
-  #   runs-on: ubuntu-latest
-
-  #   needs: deployECR
-
-  #   steps:
-  #     - name: Check out the repo
-  #       uses: actions/checkout@v4
-
-  #     - name: Configure AWS credentials
-  #       uses: aws-actions/configure-aws-credentials@v4
-  #       with:
-  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-  #         aws-region: ${{ secrets.AWS_REGION }}
-
-  #     - name: Update kubeconfig
-  #       run: |
-  #         aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
-
-  #     - name: Apply Kubernetes manifests
-  #       run: |
-  #         kubectl apply -f api-deployment.yaml
-  #         kubectl apply -f api-service.yaml

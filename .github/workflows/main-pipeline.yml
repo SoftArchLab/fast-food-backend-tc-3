@@ -63,27 +63,80 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-
-  # deployDockerImage:
-
-  #   runs-on: ubuntu-latest
-  #   needs: build # This job depends on the 'build' job
   
-  #   steps:
-  #     - name: Check out the repo
-  #       uses: actions/checkout@v4
-  
-  #     - name: Login to dockerhub
-  #       uses: docker/login-action@v3
-  #       with:
-  #        username: ${{ secrets.DOCKERHUB_USERNAME }}
-  #        password: ${{ secrets.DOCKERHUB_TOKEN }}
-  
-  #     - name: Build and push to dockerhub
-  #       uses: docker/build-push-action@v5
-  #       with:
-  #        context: .
-  #        push: true
-  #        tags: ${{ secrets.DOCKERHUB_USERNAME }}/tc-fastfoodapi:latest
+  deployApiInEksPlan:
+    needs: deployECR
 
+    runs-on: ubuntu-latest
 
+    env:
+      TF_WORKING_DIR: ./terraform 
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Fix Terraform permissions (act workaround)
+        run: |
+          sudo find /tmp -name terraform -exec chmod +x {} \; || true
+        shell: bash
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ${{ env.TF_WORKING_DIR }}
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+        working-directory: ${{ env.TF_WORKING_DIR }}
+  
+  deployApiInEks:
+    needs: deployApiInEksPlan
+
+    runs-on: ubuntu-latest
+
+    env:
+      TF_WORKING_DIR: ./terraform
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Fix Terraform permissions (act workaround)
+        run: |
+          sudo find /tmp -name terraform -exec chmod +x {} \; || true
+        shell: bash
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{ secrets.AWS_REGION }}  
+
+      - name: Terraform Init
+        run: terraform init -reconfigure
+        working-directory: ${{ env.TF_WORKING_DIR }}
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+        working-directory: ${{ env.TF_WORKING_DIR }}
+
+      - name: Terraform Apply (Deploy EKS)
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve tfplan
+        working-directory: ${{ env.TF_WORKING_DIR }}  

@@ -9,7 +9,7 @@
       - "8080:8080"
     environment:
         - ASPNETCORE_ENVIRONMENT=Development
-        - connectionStrings__DefaultConnection=Server=fastfood_db_mysql;Port=3306;Database=FastFoodDb;User=root;Password=fastfood@123;
+        - connectionStrings__DefaultConnection=server=fastfood-aurora-instance-0.czek4s2q63n2.us-east-1.rds.amazonaws.com;port=3306;database=FastFoodDb;user=root;password=fastfood123;
     depends_on: 
         - fastfood_db_mysql
     restart: unless-stopped

@@ -21,6 +21,7 @@ metadata:
   namespace: fastfood-api
 spec:
   type: LoadBalancer
+  allocateLoadBalancerNodePorts: true
   selector:
     app: fastfood-api
   ports:
